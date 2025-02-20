@@ -8,13 +8,13 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  server: {
-    proxy: {
-      '/api': { // Ganti dengan prefix API yang digunakan
-        target: 'https://hon-jana-flickacademy-4e912e1a.koyeb.app', // Ganti dengan URL backend
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': { // Ganti dengan prefix API yang digunakan
+  //       target: 'https://hon-jana-flickacademy-4e912e1a.koyeb.app', // Ganti dengan URL backend
+  //       changeOrigin: true,
+  //       secure: false,
+  //     },
+  //   },
+  // },
 });
