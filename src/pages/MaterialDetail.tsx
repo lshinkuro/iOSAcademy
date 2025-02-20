@@ -1,13 +1,15 @@
-import React from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CheckCircle2, Clock, BookOpen, ChevronRight } from 'lucide-react';
+import { CheckCircle2, Clock, BookOpen, ChevronRight, Play, BookOpen as BookOpenIcon, Video } from 'lucide-react';
 import { useBootcampStore } from '../store/bootcampStore';
 
 export const MaterialDetail = () => {
   const { id } = useParams();
+  console.log(id)
   const navigate = useNavigate();
   const { getMaterialById } = useBootcampStore();
   const material = getMaterialById(id || '');
+  const [activeTab, setActiveTab] = useState<'content' | 'videos'>('content');
 
   if (!material) {
     return (
@@ -23,6 +25,19 @@ export const MaterialDetail = () => {
     navigate(`/materials/${id}/topics/${encodeURIComponent(topic)}`, {
       state: { sectionTitle, material }
     });
+  };
+
+  const getLevelColor = (level: string) => {
+    switch (level) {
+      case 'beginner':
+        return 'bg-green-100 text-green-800';
+      case 'intermediate':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'advanced':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
   };
 
   return (
@@ -62,8 +77,36 @@ export const MaterialDetail = () => {
               </div>
             </div>
 
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Course Content</h2>
+            {/* Tabs */}
+            <div className="border-b border-gray-200 mb-8">
+              <nav className="flex space-x-8" aria-label="Tabs">
+                <button
+                  onClick={() => setActiveTab('content')}
+                  className={`${
+                    activeTab === 'content'
+                      ? 'border-indigo-500 text-indigo-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  } flex items-center whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                >
+                  <BookOpenIcon className="h-5 w-5 mr-2" />
+                  Course Content
+                </button>
+                <button
+                  onClick={() => setActiveTab('videos')}
+                  className={`${
+                    activeTab === 'videos'
+                      ? 'border-indigo-500 text-indigo-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  } flex items-center whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                >
+                  <Video className="h-5 w-5 mr-2" />
+                  Video Courses
+                </button>
+              </nav>
+            </div>
+
+            {/* Tab Content */}
+            {activeTab === 'content' ? (
               <div className="space-y-4">
                 {material.content.map((section, index) => (
                   <div key={index} className="border rounded-lg overflow-hidden">
@@ -90,7 +133,41 @@ export const MaterialDetail = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-6">
+                {material.videoCourses.map((course) => (
+                  <div key={course.id} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div className="aspect-w-16 aspect-h-9">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${course.youtubeId}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-gray-900">{course.title}</h3>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getLevelColor(course.level)}`}>
+                          {course.level}
+                        </span>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-4">{course.description}</p>
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center">
+                          <Clock className="h-4 w-4 mr-1" />
+                          {course.duration}
+                        </div>
+                        <div className="flex items-center">
+                          <Play className="h-4 w-4 mr-1" />
+                          {course.instructor}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

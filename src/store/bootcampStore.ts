@@ -50,7 +50,13 @@ export const useBootcampStore = create<BootcampStore>()(
       // Actions
       setSelectedProgram: (program) => set({ selectedProgram: program }),
       
-      getMaterialById: (id) => get().materials.find(m => m.id === id),
+      getMaterialById: (id) => {
+        const materials = get().materials;
+        console.log('Available materials:', materials, id);
+        const foundMaterial = materials.find(m => m.ID === Number(id));
+        console.log('Found material:', foundMaterial);
+        return foundMaterial;
+      },
       
       login: async (email: string, password: string) => {
         set({ isLoading: true, error: null });
@@ -136,6 +142,7 @@ export const useBootcampStore = create<BootcampStore>()(
         set({ isLoading: true, error: null });
         try {
           const materials = await api.getMaterials();
+          console.log(materials)
           set({ materials });
         } catch (error) {
           set({ error: (error as Error).message });

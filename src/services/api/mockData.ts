@@ -61,22 +61,34 @@ export const mockData = {
     {
       id: '1',
       name: 'Gojek',
-      logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+      logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+      description: 'Leading technology company revolutionizing on-demand services',
+      employees: '100+',
+      location: 'Jakarta, Indonesia'
     },
     {
       id: '2',
       name: 'Tokopedia',
-      logo: 'https://images.unsplash.com/photo-1554774853-719586f82d77?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+      logo: 'https://images.unsplash.com/photo-1554774853-719586f82d77?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+      description: 'Indonesia\'s largest e-commerce platform',
+      employees: '50+',
+      location: 'Jakarta, Indonesia'
     },
     {
       id: '3',
       name: 'Traveloka',
-      logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+      logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+      description: 'Leading travel and lifestyle booking platform in Southeast Asia',
+      employees: '75+',
+      location: 'Jakarta, Indonesia'
     },
     {
       id: '4',
       name: 'Bukalapak',
-      logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+      logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+      description: 'One of Indonesia\'s largest technology companies',
+      employees: '40+',
+      location: 'Jakarta, Indonesia'
     }
   ],
   materials: [
@@ -123,6 +135,35 @@ export const mockData = {
             'Pattern matching'
           ]
         }
+      ],
+      videoCourses: [
+        {
+          id: 'v1',
+          title: 'Introduction to Swift Programming',
+          description: 'Learn the fundamentals of Swift programming language with practical examples.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '15:30',
+          instructor: 'John Smith',
+          level: 'beginner'
+        },
+        {
+          id: 'v2',
+          title: 'Swift Object-Oriented Programming',
+          description: 'Deep dive into object-oriented programming concepts in Swift.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '20:45',
+          instructor: 'Sarah Johnson',
+          level: 'intermediate'
+        },
+        {
+          id: 'v3',
+          title: 'Advanced Swift Protocols',
+          description: 'Master protocol-oriented programming in Swift.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '25:15',
+          instructor: 'Mike Chen',
+          level: 'advanced'
+        }
       ]
     },
     {
@@ -158,6 +199,35 @@ export const mockData = {
             'Stack views',
             'Dynamic layouts'
           ]
+        }
+      ],
+      videoCourses: [
+        {
+          id: 'v4',
+          title: 'UIKit Fundamentals',
+          description: 'Learn the basics of UIKit and iOS interface development.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '18:20',
+          instructor: 'John Smith',
+          level: 'beginner'
+        },
+        {
+          id: 'v5',
+          title: 'Advanced Auto Layout',
+          description: 'Master Auto Layout and responsive UI design.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '22:15',
+          instructor: 'Sarah Johnson',
+          level: 'intermediate'
+        },
+        {
+          id: 'v6',
+          title: 'Custom UI Components',
+          description: 'Create reusable custom UI components in iOS.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '19:45',
+          instructor: 'Mike Chen',
+          level: 'advanced'
         }
       ]
     },
@@ -195,6 +265,35 @@ export const mockData = {
             'Factory pattern'
           ]
         }
+      ],
+      videoCourses: [
+        {
+          id: 'v7',
+          title: 'iOS Architecture Patterns',
+          description: 'Understanding different architectural patterns in iOS development.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '23:10',
+          instructor: 'John Smith',
+          level: 'intermediate'
+        },
+        {
+          id: 'v8',
+          title: 'MVVM in Practice',
+          description: 'Implementing MVVM architecture in iOS applications.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '26:30',
+          instructor: 'Sarah Johnson',
+          level: 'advanced'
+        },
+        {
+          id: 'v9',
+          title: 'Clean Architecture',
+          description: 'Applying Clean Architecture principles in iOS development.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '28:45',
+          instructor: 'Mike Chen',
+          level: 'advanced'
+        }
       ]
     },
     {
@@ -230,6 +329,35 @@ export const mockData = {
             'CRUD operations',
             'Relationships and migrations'
           ]
+        }
+      ],
+      videoCourses: [
+        {
+          id: 'v10',
+          title: 'iOS Data Persistence Basics',
+          description: 'Introduction to different data storage options in iOS.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '16:40',
+          instructor: 'John Smith',
+          level: 'beginner'
+        },
+        {
+          id: 'v11',
+          title: 'Core Data Mastery',
+          description: 'Deep dive into Core Data framework and its features.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '24:20',
+          instructor: 'Sarah Johnson',
+          level: 'intermediate'
+        },
+        {
+          id: 'v12',
+          title: 'Cloud Sync Strategies',
+          description: 'Implementing cloud synchronization in iOS apps.',
+          youtubeId: 'comQ1-x2a1Q',
+          duration: '21:15',
+          instructor: 'Mike Chen',
+          level: 'advanced'
         }
       ]
     }

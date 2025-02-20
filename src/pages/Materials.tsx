@@ -6,6 +6,7 @@ import { useBootcampStore } from '../store/bootcampStore';
 export const Materials = () => {
   const navigate = useNavigate();
   const { materials } = useBootcampStore();
+  console.log(materials)
 
   return (
     <div className="py-20 bg-gray-50">
@@ -20,8 +21,8 @@ export const Materials = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {materials.map((material) => (
             <div
-              key={material.id}
-              onClick={() => navigate(`/materials/${material.id}`)}
+              key={material.ID}
+              onClick={() => navigate(`/materials/${material.ID}`)}
               className="bg-white rounded-xl shadow-lg p-6 cursor-pointer transform transition-all hover:scale-105"
             >
               <div className="bg-indigo-100 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-6">

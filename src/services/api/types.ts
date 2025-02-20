@@ -31,16 +31,37 @@ export interface Partner {
 }
 
 export interface Material {
-  id: string;
+  ID: number;
+  CreatedAt: string;
+  UpdatedAt: string;
+  DeletedAt: null | string;
   title: string;
   description: string;
-  icon: 'smartphone' | 'code' | 'layout' | 'database' | 'terminal' | 'book';
+  icon: string;
   duration: number;
   lessons: number;
   learningPoints: string[];
   content: {
+    ID: number;
+    CreatedAt: string;
+    UpdatedAt: string;
+    DeletedAt: null | string;
     title: string;
     topics: string[];
+    material_id: number;
+  }[];
+  videoCourses: {
+    ID: number;
+    CreatedAt: string;
+    UpdatedAt: string;
+    DeletedAt: null | string;
+    title: string;
+    description: string;
+    youtube_id: string;
+    duration: string;
+    instructor: string;
+    level: string;
+    material_id: number;
   }[];
 }
 
