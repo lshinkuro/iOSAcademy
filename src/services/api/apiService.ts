@@ -70,9 +70,19 @@ export class ApiService {
       throw new Error('Invalid credentials');
     }
 
+    if (!user.role) {
+      throw new Error('User role not defined');
+    }
+
     localStorage.setItem('auth_token', token);
+    localStorage.setItem('user_role', user.role); // Store role in localStorage for easy access
+    
     const { password, ...userWithoutPassword } = user;
-    return { ...userWithoutPassword, provider: 'email' };
+    return { 
+      ...userWithoutPassword, 
+      provider: 'email',
+      role: user.role 
+    };
   }
 
   async loginWithGoogle(response: GoogleLoginResponse): Promise<User> {
@@ -83,7 +93,8 @@ export class ApiService {
       email: decoded.email,
       name: decoded.name,
       picture: decoded.picture,
-      provider: 'google'
+      provider: 'google',
+      role: 'student', // Changed from 'user' to 'student' to match the expected role type
     };
   }
 
@@ -111,7 +122,7 @@ export class ApiService {
   async getMaterialById(id: string): Promise<Material | undefined> {
     // Using mock data for now
     const response = await this.fetchApi<Material[]>('/materials');
-    return response.data.find(m => m.id === id);
+    return response.data.find(m => m.ID === Number(id));
   }
 
   async getProjects(): Promise<Project[]> {

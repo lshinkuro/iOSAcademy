@@ -3,14 +3,18 @@ import { useBootcampStore } from '../store/bootcampStore';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
+  requiredRole?: 'admin' | 'student';
 }
 
-export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { isAuthenticated } = useBootcampStore();
-  const location = useLocation();
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requiredRole }) => {
+  const { user, isAuthenticated } = useBootcampStore();
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!isAuthenticated || !user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (requiredRole && user.role !== requiredRole) {
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;

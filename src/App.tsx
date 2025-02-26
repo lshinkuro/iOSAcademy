@@ -11,8 +11,11 @@ import { EnrollmentForm } from './pages/EnrollmentForm';
 import { Projects } from './pages/Projects';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useBootcampStore } from './store/bootcampStore';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { AdminMaterials } from './pages/admin/AdminMaterials';
+import { AdminUsers } from './pages/admin/AdminUsers';
 
-const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID"; // Replace with your actual Google Client ID
+const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID";
 
 function App() {
   const { fetchPublicData } = useBootcampStore();
@@ -26,24 +29,36 @@ function App() {
       <Router>
         <Layout>
           <Routes>
+            {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/materials" element={<Materials />} />
-            <Route path="/enroll" element={<EnrollmentForm />} />
-            <Route path="/projects" element={<Projects />} />
+
+            {/* Admin Routes */}
             <Route
-              path="/materials/:id"
+              path="/admin/*"
               element={
-                <ProtectedRoute>
-                  <MaterialDetail />
+                <ProtectedRoute requiredRole="admin">
+                  <Routes>
+                    <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="materials" element={<AdminMaterials />} />
+                    <Route path="users" element={<AdminUsers />} />
+                  </Routes>
                 </ProtectedRoute>
               }
             />
+
+            {/* Student Routes */}
             <Route
-              path="/materials/:id/topics/:topic"
+              path="/student/*"
               element={
-                <ProtectedRoute>
-                  <TopicDetail />
+                <ProtectedRoute requiredRole="student">
+                  <Routes>
+                    <Route path="materials" element={<Materials />} />
+                    <Route path="materials/:id" element={<MaterialDetail />} />
+                    <Route path="materials/:id/topics/:topic" element={<TopicDetail />} />
+                    <Route path="enroll" element={<EnrollmentForm />} />
+                    <Route path="projects" element={<Projects />} />
+                  </Routes>
                 </ProtectedRoute>
               }
             />

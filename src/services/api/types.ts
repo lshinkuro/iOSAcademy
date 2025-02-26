@@ -4,6 +4,7 @@ export interface User {
   name: string;
   picture?: string;
   provider?: 'email' | 'google';
+  role: 'student' | 'mentor' | 'admin';
 }
 
 export interface Program {

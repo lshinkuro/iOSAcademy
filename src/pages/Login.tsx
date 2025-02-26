@@ -18,7 +18,13 @@ export const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate(from, { replace: true });
+        // Add role-based navigation
+      const user = useBootcampStore.getState().user;
+      if (user?.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/student/materials');
+      }
     } catch (err) {
       setError('Invalid email or password');
     }
